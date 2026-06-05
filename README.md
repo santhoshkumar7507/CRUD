@@ -23,23 +23,37 @@ With the integration of **Graphviz** as a conceptual architecture mapping tool, 
 The following diagram illustrates the internal flow of request handling, from the client through the validation layer and into our in-memory data store.
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#1a1a2e',
+      'primaryTextColor': '#fff',
+      'primaryBorderColor': '#e94560',
+      'lineColor': '#00b4d8',
+      'secondaryColor': '#0f3460',
+      'tertiaryColor': '#16213e'
+    }
+  }
+}%%
 graph TD;
-    Client((🌐 Client Request)) -->|HTTP GET/POST| Router[🚦 FastAPI Router]
-    Router -->|Payload| Validator{🛡️ Pydantic Validation}
+    Client((🌐 Client Request)):::client -->|HTTP GET/POST| Router[🚦 FastAPI Router]:::router
+    Router -->|Payload| Validator{🛡️ Pydantic Validation}:::validator
     
-    Validator -- Invalid Data --> Error[❌ 422 Unprocessable Entity]
-    Validator -- Valid Data --> Controller[⚙️ CRUD Controller]
+    Validator -- Invalid Data --> Error[❌ 422 Unprocessable Entity]:::error
+    Validator -- Valid Data --> Controller[⚙️ CRUD Controller]:::controller
     
-    Controller -->|Read/Write| Storage[(💾 In-Memory List)]
+    Controller -->|Read/Write| Storage[(💾 In-Memory List)]:::storage
     Storage -->|Return Data| Controller
     
     Controller -->|Response| Client
     
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px;
-    classDef storage fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
-    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px;
-    class Storage storage;
-    class Error error;
+    classDef client fill:#06d6a0,stroke:#ffffff,stroke-width:3px,color:#000000,font-weight:bold;
+    classDef router fill:#00b4d8,stroke:#ffffff,stroke-width:3px,color:#000000,font-weight:bold;
+    classDef validator fill:#f72585,stroke:#ffffff,stroke-width:3px,color:#ffffff,font-weight:bold;
+    classDef error fill:#d00000,stroke:#ffffff,stroke-width:3px,color:#ffffff,font-weight:bold;
+    classDef controller fill:#7209b7,stroke:#ffffff,stroke-width:3px,color:#ffffff,font-weight:bold;
+    classDef storage fill:#3a0ca3,stroke:#ffffff,stroke-width:3px,color:#ffffff,font-weight:bold;
 ```
 
 ## 🛠️ Architecture Highlights
