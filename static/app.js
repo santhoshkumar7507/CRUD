@@ -55,12 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${student.age}</td>
                 <td class="text-right">
                     <div class="table-actions">
-                        <button class="btn-small btn-edit" onclick="editStudent(${student.id}, '${student.name}', ${student.age}, '${student.course}')">Edit</button>
-                        <button class="btn-small btn-delete" onclick="deleteStudent(${student.id})">Delete</button>
+                        <button class="btn-small btn-edit">Edit</button>
+                        <button class="btn-small btn-delete">Delete</button>
                     </div>
                 </td>
             `;
             tbody.appendChild(tr);
+
+            // Add event listeners safely to avoid string escaping issues
+            tr.querySelector('.btn-edit').addEventListener('click', () => {
+                editStudent(student.id, student.name, student.age, student.course);
+            });
+            
+            tr.querySelector('.btn-delete').addEventListener('click', () => {
+                deleteStudent(student.id);
+            });
         });
     }
 
@@ -98,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 form.reset();
                 isUpdating = false;
                 document.getElementById('id').disabled = false; // Re-enable ID input
-                document.querySelector('.btn-primary').innerText = "Register Student";
+                document.querySelector('.btn-primary').innerText = "Save Record";
                 fetchStudents();
             } else {
                 const errData = await response.json();
