@@ -1,5 +1,5 @@
 <div align="center">
-  <h3>🎓 NexusEdu SIS & Architecture Visualization</h3>
+  <h3>🎓 StudentCore SIS & Architecture Visualization</h3>
   <p><i>A sleek, in-memory RESTful CRUD API demonstrating modern Python backend patterns.</i></p>
 
   <p>
@@ -14,7 +14,7 @@
 
 ## 📌 About The Project
 
-While minimalist in code, this **NexusEdu SIS** is engineered using professional-grade tools. It provides a robust backend foundation showing how to properly structure routing, request validation, and data serialization. 
+While minimalist in code, this **StudentCore SIS** is engineered using professional-grade tools. It provides a robust backend foundation showing how to properly structure routing, request validation, and data serialization. 
 
 With the integration of **Graphviz** as a conceptual architecture mapping tool, this project serves not only as an API backend but as an architectural blueprint for modern data-flow design.
 

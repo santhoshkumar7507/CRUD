@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import os
 
-app = FastAPI(title="NexusEdu SIS", description="Enterprise Student Information System API", version="1.0.0")
+app = FastAPI(title="StudentCore", description="Enterprise Student Information System API", version="1.0.0")
 
 # Mount the static directory
 os.makedirs("static", exist_ok=True)
