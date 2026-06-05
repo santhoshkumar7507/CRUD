@@ -1,11 +1,12 @@
 :root {
-    --bg-color: #e0e5ec;
-    --text-main: #2d3436;
-    --text-muted: #636e72;
-    --primary: #0984e3;
-    --danger: #d63031;
-    --shadow-light: rgba(255, 255, 255, 0.8);
-    --shadow-dark: rgba(163, 177, 198, 0.6);
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.85);
+    --primary: #ffffff;
+    --danger: #ff4757;
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    --glass-hover: rgba(255, 255, 255, 0.25);
 }
 
 * {
@@ -16,13 +17,22 @@
 }
 
 body {
-    background-color: var(--bg-color);
+    /* Vibrant Animated Aurora Background */
+    background: linear-gradient(-45deg, #ff7b00, #ff007a, #7000ff, #00d4ff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     color: var(--text-main);
     min-height: 100vh;
 }
 
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 .background-orbs {
-    display: none; /* Clean neumorphic look does not need orbs */
+    display: none; /* Let the animated background shine */
 }
 
 .container {
@@ -31,13 +41,15 @@ body {
     padding: 2rem;
 }
 
-/* Neumorphic base class */
+/* Bright Glassmorphism */
 .glass-panel {
-    background: var(--bg-color);
-    border-radius: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
     padding: 2rem;
-    box-shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
-    border: none;
+    box-shadow: var(--glass-shadow);
 }
 
 header {
@@ -46,19 +58,24 @@ header {
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
-    color: var(--text-main);
+    letter-spacing: -1px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 header h1 span {
-    color: var(--primary);
-    -webkit-text-fill-color: initial;
-    background: none;
+    color: #ffeb3b; /* A pop of yellow */
+    text-shadow: 0 2px 15px rgba(255, 235, 59, 0.5);
 }
 
-header p { color: var(--text-muted); font-weight: 600; }
+header p { 
+    color: var(--text-main); 
+    font-weight: 600; 
+    font-size: 1.1rem;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
 
 main {
     display: grid;
@@ -70,53 +87,67 @@ main {
     main { grid-template-columns: 1fr; }
 }
 
-.form-section h2 { margin-bottom: 1.5rem; font-size: 1.5rem; color: var(--primary); }
+.form-section h2 { margin-bottom: 1.5rem; font-size: 1.5rem; text-shadow: 0 1px 5px rgba(0,0,0,0.2); }
 
 .input-group { margin-bottom: 1.2rem; }
 
 .input-group label {
     display: block;
-    font-size: 0.9rem;
-    color: var(--text-muted);
+    font-size: 0.95rem;
+    color: var(--text-main);
     margin-bottom: 0.5rem;
     font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .input-group input {
     width: 100%;
     padding: 1rem;
     border-radius: 12px;
-    background: var(--bg-color);
-    border: none;
-    color: var(--text-main);
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--glass-border);
+    color: white;
     font-size: 1rem;
     outline: none;
-    box-shadow: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
     transition: all 0.3s ease;
 }
 
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
 .input-group input:focus {
-    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+    background: rgba(0, 0, 0, 0.25);
+    border-color: white;
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
 }
 
 .btn-primary {
     width: 100%;
     padding: 1rem;
-    border: none;
+    border: 1px solid var(--glass-border);
     border-radius: 12px;
-    background: var(--primary);
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
     color: white;
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 800;
+    font-size: 1.1rem;
     cursor: pointer;
-    box-shadow: 6px 6px 10px var(--shadow-dark), -6px -6px 10px var(--shadow-light);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     transition: all 0.2s ease;
     margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
 .btn-primary:active {
-    box-shadow: inset 4px 4px 10px rgba(0,0,0,0.2);
-    transform: translateY(2px);
+    transform: translateY(1px);
 }
 
 #status-message {
@@ -125,12 +156,13 @@ main {
     text-align: center;
     min-height: 20px;
     font-weight: 800;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
-.success { color: #00b894; }
-.error { color: var(--danger); }
+.success { color: #00ffaa; }
+.error { color: #ffeb3b; }
 
 /* Grid Styles */
-.data-section h2 { margin-bottom: 1.5rem; font-size: 1.5rem; color: var(--primary); }
+.data-section h2 { margin-bottom: 1.5rem; font-size: 1.5rem; text-shadow: 0 1px 5px rgba(0,0,0,0.2); }
 
 .student-grid {
     display: grid;
@@ -139,16 +171,21 @@ main {
 }
 
 .student-card {
-    background: var(--bg-color);
-    border-radius: 15px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
     padding: 1.5rem;
-    box-shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+    box-shadow: var(--glass-shadow);
     transition: all 0.3s ease;
-    border: none;
 }
 
 .student-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    background: var(--glass-hover);
+    border-color: rgba(255,255,255,0.5);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
 }
 
 .card-header {
@@ -159,27 +196,29 @@ main {
 }
 
 .badge-id {
-    background: var(--bg-color);
-    color: var(--primary);
+    background: rgba(0,0,0,0.2);
+    color: white;
     padding: 0.4rem 0.8rem;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 800;
-    box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+    border: 1px solid var(--glass-border);
 }
 
 .student-name {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
-    color: var(--text-main);
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .student-detail {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 0.4rem;
     font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .card-actions {
@@ -190,32 +229,30 @@ main {
 
 .btn-small {
     padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.8rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    font-size: 0.85rem;
     font-weight: 800;
     cursor: pointer;
-    background: var(--bg-color);
-    box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+    background: rgba(0,0,0,0.15);
+    color: white;
     transition: all 0.2s;
     flex: 1;
 }
 
-.btn-edit { color: var(--primary); }
-.btn-delete { color: var(--danger); }
-
-.btn-small:active {
-    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
-}
+.btn-edit:hover { background: rgba(255,255,255,0.2); }
+.btn-delete { background: rgba(255, 71, 87, 0.3); border-color: rgba(255, 71, 87, 0.5); }
+.btn-delete:hover { background: rgba(255, 71, 87, 0.6); }
 
 .empty-state {
     grid-column: 1 / -1;
     text-align: center;
     padding: 3rem;
-    color: var(--text-muted);
+    color: white;
     font-weight: 800;
-    border-radius: 15px;
-    box-shadow: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
-    border: none;
-    background: var(--bg-color);
+    font-size: 1.2rem;
+    border-radius: 20px;
+    background: var(--glass-bg);
+    border: 1px dashed var(--glass-border);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
