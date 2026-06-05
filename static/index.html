@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastStudent | Modern API Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <header class="glass-panel">
+            <h1>🎓 FastStudent <span>Dashboard</span></h1>
+            <p>Manage your students seamlessly with blazing speed.</p>
+        </header>
+
+        <main>
+            <section class="form-section glass-panel">
+                <h2>Add New Student</h2>
+                <form id="student-form">
+                    <div class="input-group">
+                        <label for="id">Student ID</label>
+                        <input type="number" id="id" placeholder="e.g. 101" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Sarah Connor" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" placeholder="22" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="course">Course</label>
+                        <input type="text" id="course" placeholder="Cybersecurity" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Register Student</button>
+                </form>
+                <div id="status-message"></div>
+            </section>
+
+            <section class="data-section">
+                <h2>Enrolled Students</h2>
+                <div id="student-grid" class="student-grid">
+                    <!-- Student cards will be injected here via JavaScript -->
+                    <div class="empty-state">Loading students...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
