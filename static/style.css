@@ -1,12 +1,11 @@
 :root {
-    --bg-dark: #0b0f19;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --neon-blue: #00f0ff;
-    --neon-purple: #8a2be2;
-    --text-main: #f0f4f8;
-    --text-muted: #94a3b8;
-    --danger: #ff4757;
+    --bg-color: #e0e5ec;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --primary: #0984e3;
+    --danger: #d63031;
+    --shadow-light: rgba(255, 255, 255, 0.8);
+    --shadow-dark: rgba(163, 177, 198, 0.6);
 }
 
 * {
@@ -17,39 +16,13 @@
 }
 
 body {
-    background-color: var(--bg-dark);
+    background-color: var(--bg-color);
     color: var(--text-main);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
 }
 
-/* Background animated orbs for premium feel */
 .background-orbs {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-}
-
-.orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.5;
-    animation: float 20s infinite alternate ease-in-out;
-}
-
-.orb-1 { width: 400px; height: 400px; background: var(--neon-blue); top: -100px; left: -100px; }
-.orb-2 { width: 500px; height: 500px; background: var(--neon-purple); bottom: -200px; right: -100px; animation-delay: -5s; }
-.orb-3 { width: 300px; height: 300px; background: #ff007a; top: 40%; left: 50%; animation-delay: -10s; opacity: 0.3;}
-
-@keyframes float {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(50px, 50px) scale(1.1); }
+    display: none; /* Clean neumorphic look does not need orbs */
 }
 
 .container {
@@ -58,58 +31,46 @@ body {
     padding: 2rem;
 }
 
-/* Glassmorphism utility */
+/* Neumorphic base class */
 .glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
+    background: var(--bg-color);
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+    border: none;
 }
 
 header {
     text-align: center;
     margin-bottom: 3rem;
-    position: relative;
-    overflow: hidden;
-}
-
-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-purple), transparent);
 }
 
 header h1 {
     font-size: 2.5rem;
     font-weight: 800;
-    letter-spacing: -1px;
     margin-bottom: 0.5rem;
+    color: var(--text-main);
 }
 
 header h1 span {
-    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
+    -webkit-text-fill-color: initial;
+    background: none;
 }
 
-header p { color: var(--text-muted); }
+header p { color: var(--text-muted); font-weight: 600; }
 
 main {
     display: grid;
     grid-template-columns: 350px 1fr;
-    gap: 2rem;
+    gap: 3rem;
 }
 
 @media (max-width: 900px) {
     main { grid-template-columns: 1fr; }
 }
 
-/* Form Styles */
-.form-section h2 { margin-bottom: 1.5rem; font-size: 1.5rem; }
+.form-section h2 { margin-bottom: 1.5rem; font-size: 1.5rem; color: var(--primary); }
 
 .input-group { margin-bottom: 1.2rem; }
 
@@ -118,42 +79,44 @@ main {
     font-size: 0.9rem;
     color: var(--text-muted);
     margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .input-group input {
     width: 100%;
-    padding: 0.8rem 1rem;
-    border-radius: 10px;
-    background: rgba(0,0,0,0.2);
-    border: 1px solid var(--glass-border);
-    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    background: var(--bg-color);
+    border: none;
+    color: var(--text-main);
     font-size: 1rem;
     outline: none;
+    box-shadow: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
     transition: all 0.3s ease;
 }
 
 .input-group input:focus {
-    border-color: var(--neon-blue);
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
 }
 
 .btn-primary {
     width: 100%;
     padding: 1rem;
     border: none;
-    border-radius: 10px;
-    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 12px;
+    background: var(--primary);
     color: white;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 6px 6px 10px var(--shadow-dark), -6px -6px 10px var(--shadow-light);
+    transition: all 0.2s ease;
     margin-top: 1rem;
 }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+.btn-primary:active {
+    box-shadow: inset 4px 4px 10px rgba(0,0,0,0.2);
+    transform: translateY(2px);
 }
 
 #status-message {
@@ -161,42 +124,31 @@ main {
     font-size: 0.9rem;
     text-align: center;
     min-height: 20px;
+    font-weight: 800;
 }
-.success { color: #06d6a0; }
+.success { color: #00b894; }
 .error { color: var(--danger); }
 
 /* Grid Styles */
-.data-section h2 { margin-bottom: 1.5rem; font-size: 1.5rem; }
+.data-section h2 { margin-bottom: 1.5rem; font-size: 1.5rem; color: var(--primary); }
 
 .student-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .student-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+    background: var(--bg-color);
     border-radius: 15px;
     padding: 1.5rem;
+    box-shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    border: none;
 }
 
 .student-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255,255,255,0.2);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-}
-
-.student-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 4px; height: 100%;
-    background: var(--neon-blue);
-    transition: height 0.3s ease;
+    transform: translateY(-3px);
 }
 
 .card-header {
@@ -207,54 +159,63 @@ main {
 }
 
 .badge-id {
-    background: rgba(0, 240, 255, 0.1);
-    color: var(--neon-blue);
-    padding: 0.2rem 0.6rem;
+    background: var(--bg-color);
+    color: var(--primary);
+    padding: 0.4rem 0.8rem;
     border-radius: 20px;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 800;
+    box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
 }
 
 .student-name {
     font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
 }
 
 .student-detail {
     color: var(--text-muted);
     font-size: 0.9rem;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
 }
 
 .card-actions {
     margin-top: 1.5rem;
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .btn-small {
-    padding: 0.4rem 0.8rem;
+    padding: 0.6rem 1rem;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 0.8rem;
+    font-weight: 800;
     cursor: pointer;
-    transition: background 0.2s;
+    background: var(--bg-color);
+    box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+    transition: all 0.2s;
     flex: 1;
 }
 
-.btn-edit { background: rgba(255,255,255,0.1); color: white; }
-.btn-edit:hover { background: rgba(255,255,255,0.2); }
+.btn-edit { color: var(--primary); }
+.btn-delete { color: var(--danger); }
 
-.btn-delete { background: rgba(255, 71, 87, 0.1); color: var(--danger); border: 1px solid rgba(255, 71, 87, 0.2); }
-.btn-delete:hover { background: rgba(255, 71, 87, 0.2); }
+.btn-small:active {
+    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+}
 
 .empty-state {
     grid-column: 1 / -1;
     text-align: center;
     padding: 3rem;
     color: var(--text-muted);
-    background: var(--glass-bg);
+    font-weight: 800;
     border-radius: 15px;
-    border: 1px dashed var(--glass-border);
+    box-shadow: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
+    border: none;
+    background: var(--bg-color);
 }
