@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const API_URL = '/students';
     const form = document.getElementById('student-form');
-    const grid = document.getElementById('student-grid');
+    const tbody = document.getElementById('student-table-body');
     const statusMsg = document.getElementById('status-message');
     
     // State to track if we are updating
@@ -34,34 +34,33 @@ document.addEventListener('DOMContentLoaded', () => {
             renderStudents(data);
         } catch (error) {
             console.error('Error fetching students:', error);
-            grid.innerHTML = `<div class="empty-state error">Failed to load students. Ensure the FastAPI server is running.</div>`;
+            tbody.innerHTML = `<tr><td colspan="5" class="empty-state error">Failed to load students. Ensure the FastAPI server is running.</td></tr>`;
         }
     }
 
     // Render cards to the grid
     function renderStudents(students) {
         if (students.length === 0) {
-            grid.innerHTML = `<div class="empty-state">No students found. Add one to get started!</div>`;
+            tbody.innerHTML = `<tr><td colspan="5" class="empty-state">No students found. Add one to get started!</td></tr>`;
             return;
         }
 
-        grid.innerHTML = '';
+        tbody.innerHTML = '';
         students.forEach(student => {
-            const card = document.createElement('div');
-            card.className = 'student-card';
-            card.innerHTML = `
-                <div class="card-header">
-                    <span class="badge-id">ID: ${student.id}</span>
-                </div>
-                <div class="student-name">${student.name}</div>
-                <div class="student-detail">🎓 Course: ${student.course}</div>
-                <div class="student-detail">⏳ Age: ${student.age}</div>
-                <div class="card-actions">
-                    <button class="btn-small btn-edit" onclick="editStudent(${student.id}, '${student.name}', ${student.age}, '${student.course}')">Edit</button>
-                    <button class="btn-small btn-delete" onclick="deleteStudent(${student.id})">Delete</button>
-                </div>
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><span class="badge-id">${student.id}</span></td>
+                <td class="font-bold">${student.name}</td>
+                <td>${student.course}</td>
+                <td>${student.age}</td>
+                <td class="text-right">
+                    <div class="table-actions">
+                        <button class="btn-small btn-edit" onclick="editStudent(${student.id}, '${student.name}', ${student.age}, '${student.course}')">Edit</button>
+                        <button class="btn-small btn-delete" onclick="deleteStudent(${student.id})">Delete</button>
+                    </div>
+                </td>
             `;
-            grid.appendChild(card);
+            tbody.appendChild(tr);
         });
     }
 

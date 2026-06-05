@@ -74,9 +74,23 @@
                     </div>
                 </div>
                 
-                <div id="student-grid" class="student-grid">
-                    <!-- Student cards will be injected here via JavaScript -->
-                    <div class="empty-state">Loading database...</div>
+                <div class="table-container glass-panel">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Student Name</th>
+                                <th>Course / Program</th>
+                                <th>Age</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="student-table-body">
+                            <tr>
+                                <td colspan="5" class="empty-state">Loading database...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </main>
 
