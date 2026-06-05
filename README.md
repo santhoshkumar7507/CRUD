@@ -117,10 +117,10 @@ All endpoints communicating student data adhere to the following strict JSON sch
 
 ```json
 {
-  "id": 101,
-  "name": "Sarah Connor",
+  "id": 90,
+  "name": "Santhosh",
   "age": 22,
-  "course": "Cybersecurity Fundamentals"
+  "course": "AWS Cloud Architecture & Engineering"
 }
 ```
 
