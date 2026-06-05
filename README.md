@@ -1,13 +1,12 @@
 <div align="center">
-  <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI Logo" width="300" />
-  <br>
-  <h3>🎓 FastStudent API</h3>
+  <h3>🎓 FastStudent API & Architecture Visualization</h3>
   <p><i>A sleek, in-memory RESTful CRUD API demonstrating modern Python backend patterns.</i></p>
 
   <p>
-    <a href="https://fastapi.tiangolo.com"><img src="https://img.shields.io/badge/Framework-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"></a>
-    <a href="https://www.python.org"><img src="https://img.shields.io/badge/Language-Python_3.8+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"></a>
-    <a href="https://pydantic-docs.helpmanual.io/"><img src="https://img.shields.io/badge/Validation-Pydantic-E92063?style=flat-square&logo=pydantic&logoColor=white" alt="Pydantic"></a>
+    <a href="https://fastapi.tiangolo.com"><img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"></a>
+    <a href="https://www.python.org"><img src="https://img.shields.io/badge/Python_3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
+    <a href="https://pydantic-docs.helpmanual.io/"><img src="https://img.shields.io/badge/Pydantic-E92063?style=for-the-badge&logo=pydantic&logoColor=white" alt="Pydantic"></a>
+    <a href="https://graphviz.org/"><img src="https://img.shields.io/badge/Graphviz-222222?style=for-the-badge&logo=graphviz&logoColor=white" alt="Graphviz"></a>
   </p>
 </div>
 
@@ -15,13 +14,38 @@
 
 ## 📌 About The Project
 
-While simple in scope, this **Student Management API** is engineered using professional-grade tools. It provides a robust backend foundation showing how to properly structure routing, request validation, and data serialization without the overhead of a database connection.
+While minimalist in code, this **Student Management API** is engineered using professional-grade tools. It provides a robust backend foundation showing how to properly structure routing, request validation, and data serialization. 
 
-Perfect for quick prototyping, frontend integration testing, or as an educational reference for modern API design.
+With the integration of **Graphviz** as a conceptual architecture mapping tool, this project serves not only as an API backend but as an architectural blueprint for modern data-flow design.
 
-## 🛠️ Architecture Highlight
+## 🕸️ System Architecture (Graphviz / Flow Representation)
+
+The following diagram illustrates the internal flow of request handling, from the client through the validation layer and into our in-memory data store.
+
+```mermaid
+graph TD;
+    Client((🌐 Client Request)) -->|HTTP GET/POST| Router[🚦 FastAPI Router]
+    Router -->|Payload| Validator{🛡️ Pydantic Validation}
+    
+    Validator -- Invalid Data --> Error[❌ 422 Unprocessable Entity]
+    Validator -- Valid Data --> Controller[⚙️ CRUD Controller]
+    
+    Controller -->|Read/Write| Storage[(💾 In-Memory List)]
+    Storage -->|Return Data| Controller
+    
+    Controller -->|Response| Client
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px;
+    classDef storage fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px;
+    class Storage storage;
+    class Error error;
+```
+
+## 🛠️ Architecture Highlights
 
 - **No-Database Setup**: Uses in-memory state mapping for instant feedback and zero configuration overhead.
+- **Graphviz Ready**: Designed with clear entity separations, making it trivial to export schemas and data graphs using Graphviz algorithms.
 - **Strict Typing**: All endpoints use **Pydantic** to guarantee that invalid payloads are rejected automatically with helpful error messages.
 - **Automatic Docs**: Compliant with OpenAPI standards, instantly generating a Swagger UI dashboard.
 
@@ -31,7 +55,7 @@ Perfect for quick prototyping, frontend integration testing, or as an educationa
 
 ### Prerequisites
 
-Ensure you have a recent version of Python installed on your system.
+Ensure you have Python installed, along with the optional Graphviz engine if you plan to render local `.dot` files.
 
 ### Installation
 
@@ -73,7 +97,7 @@ Once the server is running, you can interact with the API entirely through the b
 
 ---
 
-## 📦 Data Payload Structure
+## 📦 Data Schema (Entity Representation)
 
 All endpoints communicating student data adhere to the following strict JSON schema:
 
@@ -88,5 +112,5 @@ All endpoints communicating student data adhere to the following strict JSON sch
 
 ---
 <div align="center">
-  <small>Designed for simplicity. Built for speed. 🚀</small>
+  <small>Engineered with FastAPI & Graphviz Architecture. 🚀</small>
 </div>
