@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import os
@@ -13,6 +13,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/")
 def serve_frontend():
     return FileResponse("static/index.html")
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    return Response(content=b"", media_type="image/x-icon")
 
 # Temporary storage
 students = []
